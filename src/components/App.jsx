@@ -6,6 +6,7 @@ import { ContactForm } from './Form/ContactForm';
 export class App extends Component {
   state = {
     contacts: [],
+    name: '',
     filter: '',
   };
 
