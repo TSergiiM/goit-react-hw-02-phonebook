@@ -2,14 +2,10 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactList';
 import { ContactForm } from './Form/ContactForm';
-import { ContactsFilter } from './ContactsFilter/ContactsFilter';
+// import { ContactsFilter } from './ContactsFilter/ContactsFilter';
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', text: 'qqqqqq' },
-      { id: 'id-2', text: 'aaaaaa' },
-      { id: 'id-3', text: 'zzzzzz' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -34,16 +30,30 @@ export class App extends Component {
       filter: event.currentTarget.value,
     });
   };
-
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contact =>
+      contact.text.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
   render() {
     const { contacts, filter } = this.state;
+    const visibleContacts = this.getVisibleContacts();
     return (
       <div>
         <ContactsList
-          contacts={contacts}
+          contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
         />
-        <ContactsFilter value={filter} onChange={this.changeFilter} />
+        <label htmlFor="">
+          Filter
+          <input
+            type="text"
+            value={filter}
+            onChange={this.changeFilter}
+          ></input>
+        </label>
+        {/* <ContactsFilter value={filter} onChange={this.changeFilter} /> */}
         <ContactForm onSubmit={this.addContact} />
       </div>
     );
