@@ -1,5 +1,5 @@
 export const ContactsFilter = ({ value, onChange }) => {
-  <label>
+  <label htmlFor="">
     Filter
     <input type="text" value={value} onChange={onChange}></input>
   </label>;
