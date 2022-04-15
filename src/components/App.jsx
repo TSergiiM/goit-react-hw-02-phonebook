@@ -10,10 +10,10 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = text => {
+  addContact = name => {
     const contact = {
       id: (module.id = nanoid()),
-      text,
+      name,
     };
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
@@ -35,7 +35,7 @@ export class App extends Component {
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
     return contacts.filter(contact =>
-      contact.text.toLowerCase().includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
   render() {
