@@ -43,10 +43,6 @@ export class App extends Component {
     const visibleContacts = this.getVisibleContacts();
     return (
       <div>
-        <ContactsList
-          contacts={visibleContacts}
-          onDeleteContact={this.deleteContact}
-        />
         <label htmlFor="">
           Filter
           <input
@@ -57,6 +53,10 @@ export class App extends Component {
         </label>
         {/* <ContactsFilter value={filter} onChange={this.changeFilter} /> */}
         <ContactForm onSubmit={this.addContact} />
+        <ContactsList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </div>
     );
   }
